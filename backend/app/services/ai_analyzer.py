@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import time
 from typing import Optional
 from google import genai
 from google.genai import types
@@ -12,7 +13,7 @@ from app.models.analysis import (
 )
 from app.models.inspect import WebsiteInspectResponse
 
-DEFAULT_MODEL = "gemini-1.5-flash"
+DEFAULT_MODEL = "gemini-2.5-flash"
 MAX_EMAIL_WORDS = 119
 
 
@@ -306,7 +307,13 @@ def generate_ai_analysis(
                 raise GeminiAnalysisError("Invalid or unauthorized Gemini API key.") from exc
             if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
                 raise GeminiAnalysisError("Gemini API rate limit or quota exceeded.") from exc
-            if "404" in err_str or "model" in err_str.lower():
+            if "503" in err_str or "UNAVAILABLE" in err_str or "high demand" in err_str.lower():
+                last_error = GeminiAnalysisError("Gemini service is temporarily experiencing high demand (503).")
+                if attempt < max_retries:
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                raise GeminiAnalysisError("Gemini service is temporarily experiencing high demand. Please try again in a few moments.") from exc
+            if "404" in err_str and ("not found" in err_str.lower() or "not_found" in err_str.lower()):
                 raise GeminiAnalysisError(f"Gemini model '{model_name}' not found or unavailable.") from exc
 
             last_error = GeminiAnalysisError(f"Gemini API request failed: {err_str}")

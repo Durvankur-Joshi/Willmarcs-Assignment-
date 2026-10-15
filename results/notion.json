@@ -1,0 +1,158 @@
+{
+  "requested_url": "https://www.notion.com",
+  "final_url": "https://www.notion.com",
+  "timestamp": "2026-10-15T11:05:40.891914+00:00",
+  "test_outcome": "passed",
+  "status": "success",
+  "inspection": {
+    "requested_url": "https://www.notion.com",
+    "final_url": "https://www.notion.com",
+    "status": "success",
+    "title": "The AI workspace that works for you. | Notion",
+    "meta_description": "Build Custom Agents, search across all your apps, and automate busywork. The AI workspace where teams get more done, faster.",
+    "factual_summary": "Website Title: The AI workspace that works for you. | Notion. Overview: Build Custom Agents, search across all your apps, and automate busywork. The AI workspace where teams get more done, faster.. Key Headings: Where teams and agents Think together.; AI where your team works.; Bring everything into one system of record.; Get answers, instantly—with citations.. The most ambitious companies run on Notion.",
+    "headings": {
+      "h1": [
+        "Where teams and agents Think together."
+      ],
+      "h2": [
+        "AI where your team works.",
+        "Bring everything into one system of record.",
+        "Get answers, instantly—with citations.",
+        "Keep work moving 24/7 with agents.",
+        "Trusted by teams that ship."
+      ],
+      "h3": [
+        "Capture",
+        "Find",
+        "Automate",
+        "See what Notion can do",
+        "Triage product feedback →",
+        "Resolve support tickets in Slack →",
+        "Respond to security alerts faster →",
+        "Automate weekly reporting →",
+        "Create your own developer tools →"
+      ]
+    },
+    "pages_inspected": [
+      {
+        "url": "https://www.notion.com",
+        "title": "The AI workspace that works for you. | Notion",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.notion.com/product/features",
+        "title": "Notion features—Capture, find, automate | Notion",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.notion.com/product/demos",
+        "title": "Notion Demo Hub",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.notion.com/about",
+        "title": "Why we built Notion – About",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      }
+    ],
+    "discovered_relevant_pages": [
+      "https://www.notion.com/product/features",
+      "https://www.notion.com/product/demos",
+      "https://www.notion.com/about",
+      "https://www.notion.com/pricing",
+      "https://www.notion.com/product",
+      "https://www.notion.com/product/ai",
+      "https://www.notion.com/product/dev",
+      "https://www.notion.com/product/ai/use-cases/triage-product-feedback",
+      "https://www.notion.com/product/ai/use-cases/automate-weekly-reporting",
+      "https://www.notion.com/product/ai/use-cases/resolve-support-tickets-in-slack",
+      "https://www.notion.com/product/ai/use-cases/respond-to-security-alerts-faster",
+      "https://www.notion.com/contact-sales"
+    ],
+    "video_detection": "video_detected",
+    "video_evidence": [
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.notion.com",
+        "video_url": "https://videos.ctfassets.net/spoqsaf9291f/1EL7UZIXfcqngxsNSbL8tR/291f61f56f29dd8e788deaec8561d882/web-homepage-hero-1920x1200_final.mp4",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "youtube_embed",
+        "source_page_url": "https://www.notion.com/about",
+        "video_url": "https://www.youtube-nocookie.com/embed/BFlop4sP8Os?enablejsapi=1&autoplay=0&mute=0&playsinline=1&controls=1&loop=0&modestbranding=1&rel=0",
+        "title_or_context": "YouTube video player",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "video_link",
+        "source_page_url": "https://www.notion.com/about",
+        "video_url": "https://www.youtube.com/watch?v=BFlop4sP8Os",
+        "title_or_context": "YouTube",
+        "confidence": "medium"
+      }
+    ],
+    "warnings_and_limitations": [
+      "Inspection completed across 4 page(s) on target domain.",
+      "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+      "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+    ],
+    "error_message": null
+  },
+  "recommendations": [
+    {
+      "title": "Notion AI Agents: Automate Your Workflow",
+      "video_type": "Feature Walkthrough/Demo",
+      "suggested_placement": "https://www.notion.com/product/demos or https://www.notion.com/product/features",
+      "rationale": "The website heavily emphasizes 'Custom Agents' and 'automate busywork' in its meta description and H2s. A dedicated video demonstrating the creation and function of these agents would clearly illustrate their value proposition for efficiency and productivity, directly addressing key benefits.",
+      "evidence": "Meta Description: 'Build Custom Agents, search across all your apps, and automate busywork.'; H2: 'Keep work moving 24/7 with agents.'; H2: 'AI where your team works.'",
+      "source_page_url": "https://www.notion.com/product/demos",
+      "target_audience": "Team leads, operations managers, knowledge workers seeking automation solutions.",
+      "suggested_outline": "The video would start by highlighting common workflow inefficiencies. It would then visually guide users through the process of setting up a Notion AI Agent, demonstrating a practical use case like summarizing documents or automating data entry. The video would conclude by showcasing the time-saving benefits.",
+      "evidence_limitations": "Public crawl did not inspect authenticated app screens, so the exact UI for building agents is not visible in the evidence."
+    },
+    {
+      "title": "Unify Your Knowledge: Notion as Your Single Source of Truth",
+      "video_type": "Problem-Solution Explainer",
+      "suggested_placement": "https://www.notion.com (below the hero section) or https://www.notion.com/product/features",
+      "rationale": "The website highlights Notion's ability to 'Bring everything into one system of record' and 'Get answers, instantly—with citations.' A video explaining how Notion solves the common problem of scattered information and demonstrates its unified search capabilities would resonate with teams struggling with information silos.",
+      "evidence": "H2: 'Bring everything into one system of record.'; H2: 'Get answers, instantly—with citations.'; Meta Description: 'search across all your apps.'",
+      "source_page_url": "https://www.notion.com",
+      "target_audience": "IT decision-makers, project managers, team leads struggling with fragmented information.",
+      "suggested_outline": "The video would open by illustrating the chaos of disparate tools and information. It would then transition to showing how Notion centralizes various types of content and integrates with other apps. A demonstration of its powerful search function, providing instant, cited answers, would follow, emphasizing clarity and efficiency.",
+      "evidence_limitations": "The evidence does not specify existing interactive video capabilities, so the 'interactive' aspect would be a new implementation."
+    },
+    {
+      "title": "Why Ambitious Teams Choose Notion AI",
+      "video_type": "Customer Proof / Social Proof Highlight",
+      "suggested_placement": "https://www.notion.com (near 'Trusted by teams that ship') or https://www.notion.com/about",
+      "rationale": "The website explicitly states 'The most ambitious companies run on Notion' and 'Trusted by teams that ship.' A short, impactful video featuring a customer's experience would provide strong social proof, build trust, and validate Notion's claims, particularly for enterprise prospects.",
+      "evidence": "Factual Summary: 'The most ambitious companies run on Notion.'; H2: 'Trusted by teams that ship.'",
+      "source_page_url": "https://www.notion.com/about",
+      "target_audience": "Enterprise decision-makers, team leads evaluating solutions, skeptical prospects.",
+      "suggested_outline": "The video would feature a brief testimonial from a representative of an 'ambitious company.' They would articulate a challenge they faced before Notion and how Notion, particularly its AI features, helped them achieve specific, positive outcomes like improved collaboration or faster project delivery. The video would conclude with a strong endorsement.",
+      "evidence_limitations": "The provided evidence does not include specific customer names or detailed case studies, so the video would need to feature a general 'customer highlight' or a representative example based on the claims."
+    }
+  ],
+  "outreach_email": {
+    "subject": "Notion's AI: Boost Team Productivity?",
+    "body": "Hi Notion Team,\n\nI'm impressed by your focus on 'The AI workspace that works for you,' especially with 'Custom Agents' and 'automating busywork.'\n\nBased on your website, I see opportunities to further amplify these messages with targeted video content. Imagine a concise demo showcasing AI Agents in action, or an explainer video detailing how Notion unifies 'everything into one system of record.' Even a short customer highlight could powerfully reinforce why 'ambitious companies run on Notion.'\n\nThese could significantly enhance understanding and conversion for prospective teams.\n\nBest regards",
+    "word_count": 88
+  },
+  "warnings_and_limitations": [
+    "Inspection completed across 4 page(s) on target domain.",
+    "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+    "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+  ],
+  "error_message": null
+}

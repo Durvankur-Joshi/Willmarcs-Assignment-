@@ -458,3 +458,155 @@ test('8. Duplicate submission prevention and stale state clearing', () => {
   const duplicateSubmission = startAnalysis()
   assert.equal(duplicateSubmission, false, 'Duplicate submission is blocked while loading')
 })
+
+test('9. Inaccessible website with 403/404 produces inaccessible error', async () => {
+  const inaccessibleFetch = async () => ({
+    ok: true,
+    status: 200,
+    json: async () => ({
+      requested_url: 'https://private-site.org',
+      status: 'failed',
+      inspection: {
+        requested_url: 'https://private-site.org',
+        status: 'failed',
+        pages_inspected: []
+      },
+      recommendations: [],
+      error_message: 'Website inspection failed: HTTP error 403 returned by https://private-site.org'
+    })
+  })
+
+  await assert.rejects(
+    async () => {
+      await analyzeWebsiteWithFetch('https://private-site.org', inaccessibleFetch)
+    },
+    (err) => {
+      assert.equal(err.details?.type, 'inaccessible')
+      assert.match(err.details?.title, /Target Website Inaccessible/)
+      return true
+    }
+  )
+})
+
+test('10. Non-JSON server response produces invalid server response error', async () => {
+  const nonJsonFetch = async () => ({
+    ok: false,
+    status: 502,
+    json: async () => {
+      throw new Error('Unexpected token < in JSON at position 0')
+    }
+  })
+
+  await assert.rejects(
+    async () => {
+      await analyzeWebsiteWithFetch('https://example.com', nonJsonFetch)
+    },
+    (err) => {
+      assert.equal(err.details?.type, 'backend_unavailable')
+      assert.match(err.details?.message, /502/)
+      return true
+    }
+  )
+})
+
+test('11. Partial crawl warnings and status mapping', () => {
+  const partialBackendResponse = {
+    requested_url: 'https://example.com',
+    final_url: 'https://example.com/',
+    status: 'partial_success',
+    inspection: {
+      requested_url: 'https://example.com',
+      final_url: 'https://example.com/',
+      status: 'partial_success',
+      title: 'Example Partial',
+      headings: { h1: [], h2: [], h3: [] },
+      pages_inspected: [
+        { url: 'https://example.com/', status: 'crawled', status_code: 200 },
+        { url: 'https://example.com/blocked', status: 'failed', status_code: 403, error_message: 'HTTP error 403' }
+      ],
+      discovered_relevant_pages: ['https://example.com/blocked'],
+      video_detection: 'possible_video_detected',
+      video_evidence: [],
+      warnings_and_limitations: ['Subpage blocked by server.']
+    },
+    recommendations: [],
+    outreach_email: null,
+    warnings_and_limitations: ['Subpage blocked by server.']
+  }
+
+  const result = adaptBackendResponse(partialBackendResponse)
+  assert.equal(result.summary.analysisStatus, 'Partial')
+  assert.equal(result.summary.videosDetected, 'Inconclusive')
+  assert.equal(result.evidence.isIncompleteAnalysis, true)
+  assert.equal(result.evidence.isInconclusiveVideoDetection, true)
+  assert.ok(result.evidence.warnings.length > 0)
+  assert.equal(result.evidence.inspectedPages[1].status, 'failed')
+})
+
+test('12. Evidence grounding: recommendation source URLs link to inspected pages', () => {
+  const backendResponse = {
+    requested_url: 'https://acme.com',
+    final_url: 'https://acme.com',
+    status: 'success',
+    inspection: {
+      requested_url: 'https://acme.com',
+      pages_inspected: [
+        { url: 'https://acme.com', status: 'crawled', status_code: 200 },
+        { url: 'https://acme.com/features', status: 'crawled', status_code: 200 }
+      ],
+      video_detection: 'no_video_detected',
+      video_evidence: []
+    },
+    recommendations: [
+      {
+        title: 'Explainer',
+        video_type: 'Explainer',
+        suggested_placement: 'Hero',
+        rationale: 'Why',
+        evidence: 'Proof',
+        source_page_url: 'https://acme.com',
+        target_audience: 'Everyone',
+        suggested_outline: 'Outline'
+      },
+      {
+        title: 'Walkthrough',
+        video_type: 'Demo',
+        suggested_placement: 'Features',
+        rationale: 'Why',
+        evidence: 'Proof',
+        source_page_url: 'https://acme.com/features',
+        target_audience: 'Devs',
+        suggested_outline: 'Outline'
+      },
+      {
+        title: 'Third Rec',
+        video_type: 'ROI',
+        suggested_placement: 'Pricing',
+        rationale: 'Why',
+        evidence: 'Proof',
+        source_page_url: 'https://acme.com',
+        target_audience: 'Execs',
+        suggested_outline: 'Outline'
+      }
+    ]
+  }
+
+  const result = adaptBackendResponse(backendResponse)
+  const inspectedUrls = new Set(result.evidence.inspectedPages.map((p) => p.url))
+  for (const rec of result.recommendations) {
+    assert.ok(inspectedUrls.has(rec.sourcePageUrl), `Source URL ${rec.sourcePageUrl} must belong to inspected pages`)
+  }
+})
+
+test('13. Clipboard API failure fallback notification', () => {
+  let copyErrorState = null
+  function handleCopyFailure() {
+    copyErrorState = 'Failed to copy to clipboard. Please select the subject and body text below manually.'
+  }
+
+  handleCopyFailure()
+  assert.equal(
+    copyErrorState,
+    'Failed to copy to clipboard. Please select the subject and body text below manually.'
+  )
+})

@@ -358,6 +358,20 @@ def test_safe_fetch_max_bytes_exceeded():
             safe_fetch_html("https://example.com", max_bytes=1000)
 
 
+def test_safe_fetch_large_page_within_limit():
+    mock_response = MagicMock()
+    mock_response.status_code = 200
+    mock_response.headers = {"Content-Type": "text/html"}
+    mock_response.encoding = "utf-8"
+    mock_response.iter_content.return_value = [b"<html>3MB page content</html>" + b" " * (3 * 1024 * 1024)]
+
+    with patch("socket.getaddrinfo", return_value=[(None, None, None, None, ("93.184.216.34", 0))]), \
+         patch("requests.Session.get", return_value=mock_response):
+        result = safe_fetch_html("https://example.com")
+        assert result.status_code == 200
+        assert "3MB page content" in result.content
+
+
 def test_safe_fetch_max_redirects_exceeded():
     mock_response_redirect = MagicMock()
     mock_response_redirect.status_code = 302

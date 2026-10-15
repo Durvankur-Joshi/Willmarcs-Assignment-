@@ -283,3 +283,39 @@ def test_api_analyze_endpoint_success():
         assert data["outreach_email"] is not None
         assert data["outreach_email"]["word_count"] < 120
         assert data["inspection"]["title"] == "Acme Automation - B2B Workflow Platform"
+
+
+def test_generate_ai_analysis_503_retry_and_recovery():
+    inspection = create_sample_inspection()
+    mock_client = MagicMock()
+    mock_response = MagicMock()
+    mock_response.text = create_mock_ai_json(email_body_word_count=80)
+
+    mock_client.models.generate_content.side_effect = [
+        Exception("503 UNAVAILABLE: This model is currently experiencing high demand."),
+        mock_response,
+    ]
+
+    with patch("time.sleep"):
+        result = generate_ai_analysis(inspection, client=mock_client, max_retries=1)
+    assert len(result.recommendations) == 3
+    assert mock_client.models.generate_content.call_count == 2
+
+
+def test_generate_ai_analysis_503_exhausted_raises_helpful_error():
+    inspection = create_sample_inspection()
+    mock_client = MagicMock()
+    mock_client.models.generate_content.side_effect = Exception("503 UNAVAILABLE: high demand")
+
+    with patch("time.sleep"):
+        with pytest.raises(GeminiAnalysisError, match="high demand"):
+            generate_ai_analysis(inspection, client=mock_client, max_retries=1)
+
+
+def test_generate_ai_analysis_404_model_not_found():
+    inspection = create_sample_inspection()
+    mock_client = MagicMock()
+    mock_client.models.generate_content.side_effect = Exception("404 NOT_FOUND: models/gemini-old is not found")
+
+    with pytest.raises(GeminiAnalysisError, match="not found or unavailable"):
+        generate_ai_analysis(inspection, client=mock_client, max_retries=0)

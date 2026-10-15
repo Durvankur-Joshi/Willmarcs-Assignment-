@@ -1,0 +1,187 @@
+{
+  "requested_url": "https://www.zoho.com/crm",
+  "final_url": "https://www.zoho.com/en-in/crm/",
+  "timestamp": "2026-10-15T11:06:36.463131+00:00",
+  "test_outcome": "passed",
+  "status": "success",
+  "inspection": {
+    "requested_url": "https://www.zoho.com/crm",
+    "final_url": "https://www.zoho.com/en-in/crm/",
+    "status": "success",
+    "title": "Zoho CRM | Top-rated Sales CRM Software by Customers",
+    "meta_description": "Zoho CRM is an AI-powered online CRM solution that streamlines your customer operations within a single platform. Trusted by over 300,000 businesses worldwide.",
+    "factual_summary": "Website Title: Zoho CRM | Top-rated Sales CRM Software by Customers. Overview: Zoho CRM is an AI-powered online CRM solution that streamlines your customer operations within a single platform. Trusted by over 300,000 businesses worldwide.. Key Headings: The easiest AI CRM for growth.; Get started with your flexible free trial; Trusted by 300K+ businesses worldwide; Supercharge your sales with Zia Agents. Intelligent automation meets intuitive design. Built with AI at its core,",
+    "headings": {
+      "h1": [
+        "The easiest AI CRM for growth."
+      ],
+      "h2": [
+        "Get started with your flexible free trial",
+        "Trusted by 300K+ businesses worldwide",
+        "Supercharge your sales with Zia Agents",
+        "Teams that work together, win together",
+        "Staying relevant and driving innovation, since 2005",
+        "AI is here to assist.",
+        "Engage with customers",
+        "Stay informed",
+        "Scale your sales",
+        "Everything your business needs, with a neat 360° view.",
+        "Obsessed with Privacy since 1999",
+        "Grow with Zoho",
+        "Take us for a spin!",
+        "Frequently Asked Questions"
+      ],
+      "h3": [
+        "Can I integrate my favorite apps with Zoho CRM?",
+        "How do I know what's the right edition for me?",
+        "How flexible are the contracts?",
+        "How do I migrate to Zoho CRM?",
+        "Is Zoho CRM available for my industry?",
+        "Does Zoho CRM have a free plan?",
+        "Can I get a demo of Zoho CRM?"
+      ]
+    },
+    "pages_inspected": [
+      {
+        "url": "https://www.zoho.com/en-in/crm/",
+        "title": "Zoho CRM | Top-rated Sales CRM Software by Customers",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.zoho.com/crm/zohocrm-pricing.html?source_from=crm_home",
+        "title": "Zoho CRM Pricing and Editions - Free for 3 users",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.zoho.com/crm/verticals/?source_from=crm_home",
+        "title": "CRM platform for vertical solutions | Zoho CRM for verticals",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://www.zoho.com/crm/maximum-productivity.html?source_from=crm_home",
+        "title": "Maximize Productivity with Automation | Zoho CRM",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      }
+    ],
+    "discovered_relevant_pages": [
+      "https://www.zoho.com/crm/zohocrm-pricing.html?source_from=crm_home",
+      "https://www.zoho.com/crm/verticals?source_from=crm_home",
+      "https://www.zoho.com/crm/maximum-productivity.html?source_from=crm_home",
+      "https://www.zoho.com/crm/gartner-crm-platform-mq.html?source_from=crm_home",
+      "https://www.zoho.com/crm/resources/guided-tour/zoho-crm-overview.html?source_from=crm_home",
+      "https://www.zoho.com/jumpstart?source_from=crm_home"
+    ],
+    "video_detection": "video_detected",
+    "video_evidence": [
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/home-pg-omnichannel-video-zcrm-1.mp4",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/crm-for-everyone-home-video.mp4",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/zia-module-creation.mp4",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/ai-is-here-to-assist.webm",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/crm-home-engage-with-customers.webm",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/crm-home-stay-informed.webm",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      },
+      {
+        "detection_type": "html5_video",
+        "source_page_url": "https://www.zoho.com/en-in/crm/",
+        "video_url": "//www.zohowebstatic.com/sites/zweb/images/crm/crm-home-scale-your-sales.webm",
+        "title_or_context": "HTML5 Video Element",
+        "confidence": "high"
+      }
+    ],
+    "warnings_and_limitations": [
+      "Inspection completed across 4 page(s) on target domain.",
+      "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+      "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+    ],
+    "error_message": null
+  },
+  "recommendations": [
+    {
+      "title": "Zoho CRM AI: The Easiest Path to Sales Growth",
+      "video_type": "Product Explainer",
+      "suggested_placement": "Homepage Hero section, above the fold",
+      "rationale": "The H1 'The easiest AI CRM for growth.' and H2 'Supercharge your sales with Zia Agents' are prominent, but the existing videos are short clips. A comprehensive explainer video would consolidate the AI value proposition, clearly demonstrating how Zoho CRM's AI simplifies operations and drives growth for new visitors, improving immediate understanding and engagement.",
+      "evidence": "Website Title: 'Zoho CRM | Top-rated Sales CRM Software by Customers', Meta Description: 'Zoho CRM is an AI-powered online CRM solution...', Key H1 Headings: 'The easiest AI CRM for growth.', Key H2 Headings: 'Supercharge your sales with Zia Agents.'",
+      "source_page_url": "https://www.zoho.com/en-in/crm/",
+      "target_audience": "Prospective sales leaders, business owners seeking efficient growth solutions",
+      "suggested_outline": "Start by highlighting common sales challenges, then introduce Zoho CRM's AI (Zia) as the intuitive solution. Visually demonstrate how AI streamlines tasks, automates workflows, and provides actionable insights for sales teams, concluding with a clear call to action for the free trial.",
+      "evidence_limitations": "Public crawl did not detail specific AI features beyond 'Zia Agents' and 'intelligent automation' in depth, limiting the specificity of the outline without inference."
+    },
+    {
+      "title": "300K+ Businesses Trust Zoho CRM: Success Stories",
+      "video_type": "Customer Proof Highlight",
+      "suggested_placement": "Homepage, below the fold, near 'Trusted by 300K+ businesses worldwide' section",
+      "rationale": "The 'Trusted by 300K+ businesses worldwide' statistic is a powerful social proof point. A video compilation of short testimonials or success snippets would make this claim more tangible and relatable, visually reinforcing the 'Top-rated Sales CRM Software by Customers' message and building trust with skeptical prospects.",
+      "evidence": "Website Title: 'Zoho CRM | Top-rated Sales CRM Software by Customers', Meta Description: 'Trusted by over 300,000 businesses worldwide.', Key H2 Headings: 'Trusted by 300K+ businesses worldwide.'",
+      "source_page_url": "https://www.zoho.com/en-in/crm/",
+      "target_audience": "Decision-makers evaluating CRM solutions, skeptical buyers seeking validation",
+      "suggested_outline": "Feature a dynamic montage of diverse business owners or sales managers briefly sharing their positive experiences with Zoho CRM. Each clip would highlight a specific benefit or achievement (e.g., improved efficiency, increased sales, better customer engagement), culminating in a visual display of the '300,000+ businesses worldwide' statistic.",
+      "evidence_limitations": "The public crawl only provided the aggregate number of trusted businesses, not specific customer names, quotes, or detailed case studies, requiring a generic outline for testimonials."
+    },
+    {
+      "title": "Unlock Growth: Your Flexible Free Trial Guide",
+      "video_type": "Feature Walkthrough / Onboarding Guide",
+      "suggested_placement": "Zoho CRM Pricing and Editions page (`zohocrm-pricing.html`), adjacent to the 'Free for 3 users' offer",
+      "rationale": "The 'flexible free trial' and 'Free for 3 users' are key conversion points. A video guiding users through the initial steps of the free trial would reduce friction, clarify expectations, and encourage sign-ups by demonstrating the ease of getting started and the immediate value they can gain.",
+      "evidence": "Key H2 Headings: 'Get started with your flexible free trial', Inspected Pages: 'https://www.zoho.com/crm/zohocrm-pricing.html?source_from=crm_home' (Title: 'Zoho CRM Pricing and Editions - Free for 3 users').",
+      "source_page_url": "https://www.zoho.com/crm/zohocrm-pricing.html?source_from=crm_home",
+      "target_audience": "Self-serve SMB buyers, individuals exploring CRM options with low commitment",
+      "suggested_outline": "Begin by briefly explaining the benefits of Zoho CRM's free trial. Then, visually walk through the simple sign-up process, followed by a quick demonstration of 1-2 core features a new user can immediately leverage (e.g., adding a contact, setting up a basic task), concluding with an invitation to explore further.",
+      "evidence_limitations": "The public crawl did not include screenshots or details of the actual free trial sign-up flow or initial user interface, requiring a generalized outline for the walkthrough."
+    }
+  ],
+  "outreach_email": {
+    "subject": "Enhancing Zoho CRM's video impact",
+    "body": "Hi team,\n\nI was analyzing Zoho CRM's website and noticed your strong emphasis on being an 'AI-powered online CRM solution' trusted by '300,000+ businesses worldwide.' Your existing videos are a great start.\n\nBased on this, I identified opportunities to further amplify your message. For instance, a dedicated explainer video could deeply showcase your AI's ease of use for growth, or a customer proof compilation could visually reinforce your 'top-rated' status. Additionally, a quick guide for your 'flexible free trial' could boost sign-ups.\n\nWould you be open to a brief chat about these video strategies?\n\nBest regards",
+    "word_count": 96
+  },
+  "warnings_and_limitations": [
+    "Inspection completed across 4 page(s) on target domain.",
+    "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+    "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+  ],
+  "error_message": null
+}

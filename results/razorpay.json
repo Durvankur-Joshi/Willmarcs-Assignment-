@@ -1,0 +1,206 @@
+{
+  "requested_url": "https://razorpay.com",
+  "final_url": "https://razorpay.com",
+  "timestamp": "2026-10-15T11:06:08.697676+00:00",
+  "test_outcome": "passed",
+  "status": "success",
+  "inspection": {
+    "requested_url": "https://razorpay.com",
+    "final_url": "https://razorpay.com",
+    "status": "success",
+    "title": "Razorpay - Best Payment Solution for Online Payments India",
+    "meta_description": "Online Payments India: Start Accepting Payments Instantly with Razorpay's Payment Suite, which Supports Netbanking, Credit Card & Debit Cards, UPI etc.",
+    "factual_summary": "Website Title: Razorpay - Best Payment Solution for Online Payments India. Overview: Online Payments India: Start Accepting Payments Instantly with Razorpay's Payment Suite, which Supports Netbanking, Credit Card & Debit Cards, UPI etc.. Key Headings: This festive season get; International Payments; The all in one finance platform you’ve been looking for; Powering every industry. Powering all disruptors.; Open a virtual account in 200+ countries, save up to 50% on international bank transfer charges. Receive ACH/SWIFT/SEPA/BACS payments. Global cards, Apple Pay, Google Pay at lower fee.",
+    "headings": {
+      "h1": [
+        "This festive season get",
+        "International Payments",
+        "Automated Payroll Solution",
+        "Effortless Business Banking",
+        "Easy In-store Payments",
+        "Razorpay for FREE",
+        "Advanced Payment Gateway",
+        "AI Native",
+        "This festive",
+        "International",
+        "Automated",
+        "Effortless",
+        "Easy In-store",
+        "Advanced",
+        "Payments",
+        "season get",
+        "Payroll Solution",
+        "Business Banking",
+        "Razorpay — India's All-in-One Finance Platform"
+      ],
+      "h2": [
+        "The all in one finance platform you’ve been looking for",
+        "Powering every industry. Powering all disruptors.",
+        "Open a virtual account in 200+ countries, save up to 50% on international bank transfer charges. Receive ACH/SWIFT/SEPA/BACS payments",
+        "Witness a 40% increase in conversions, enjoy a 5X quicker checkout process, and reduce RTOs by 50%.",
+        "Utilise 15+ payment gateways for all Aggregators, improve success rates by 10% with zero downtime, and cut charges/fees by 15-30%.",
+        "Razorpay is built <for developers by developers>",
+        "Not a developer? Our No-Code products have you covered",
+        "Razorpay grows with you!",
+        "Frequently asked questions",
+        "Supercharge your business with Razorpay",
+        "What Razorpay Does",
+        "Accept Payments",
+        "Make Payouts (RazorpayX)",
+        "Business Banking (RazorpayX)",
+        "Automate Payroll (RazorpayX Payroll)",
+        "AI Native Products",
+        "For Developers",
+        "Company"
+      ],
+      "h3": [
+        "Build AI Native",
+        "Accept Payments",
+        "Make Payouts",
+        "Start Business Banking",
+        "Automate Payroll",
+        "Get Credit & Loans",
+        "Powering every industry. Powering all disruptors.",
+        "E-Commerce",
+        "Education",
+        "BFSI",
+        "SaaS",
+        "Freelance",
+        "Empower your e-commerce business",
+        "Payments for your education business.",
+        "Payments ecosystem for financial services",
+        "Global Payment Solutions for IT & SaaS Providers",
+        "The personalized payment solution for freelancers",
+        "We have innovated at every instance, creating a disruption.",
+        "Payment Links",
+        "Payment Pages",
+        "Payment Buttons",
+        "Invoices",
+        "QR Code",
+        "Subscriptions",
+        "RazorpayX works for most of our needs - be it our salaries, be it our compliance, be it our payments to vendors. And the biggest headache of all OTPs went away.",
+        "In a few hours we were able to setup the entire Payroll Management on RazorpayX. We saved 500+ Hours and Achieved 40% Cost Reduction.",
+        "Razorpay's revolving Line of Credit simplifies financial management, aiding inventory planning during cash flow gaps.",
+        "Razorpay Magic Checkout is truly a magical solution. Our conversion rate has increased by 35% & our COD, RTO has drastically decreased.",
+        "Razorpay simplifies cross-border bank transfers with the MoneySaver Exporter Account, reducing FIRC generation time from up to 5 days to seconds.",
+        "We chose Razorpay because Razorpay is easy to setup, there are different options for my customers & millions of businesses already trust Razorpay.",
+        "What is Razorpay?",
+        "What services does Razorpay offer?",
+        "What online payment solutions does Razorpay offer?",
+        "What offline payment solutions does Razorpay offer?",
+        "What international payment solutions does Razorpay offer?",
+        "What are RazorpayX Payroll and Payouts?",
+        "Which banks are supported by RazorpayX?",
+        "What is Razorpay Rize?",
+        "Is Razorpay safe and secure?",
+        "Is Razorpay RBI approved and regulated?",
+        "Does Razorpay provide customer support?",
+        "Which companies use Razorpay’s products?",
+        "In which countries does Razorpay operate?"
+      ]
+    },
+    "pages_inspected": [
+      {
+        "url": "https://razorpay.com",
+        "title": "Razorpay - Best Payment Solution for Online Payments India",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://razorpay.com/solutions/bfsi/",
+        "title": "Razorpay for BFSI - Payment solutions for your Financial Service",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://razorpay.com/solutions/saas/",
+        "title": "Razorpay for SaaS - Payment gateway for your Saas Product",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      },
+      {
+        "url": "https://razorpay.com/solutions/education/",
+        "title": "Education Payment Platform - Easy ways to collect School & Other Fees",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      }
+    ],
+    "discovered_relevant_pages": [
+      "https://razorpay.com/solutions/bfsi",
+      "https://razorpay.com/solutions/saas",
+      "https://razorpay.com/solutions/education",
+      "https://razorpay.com/solutions/e-commerce",
+      "https://razorpay.com/demo",
+      "https://razorpay.com/about",
+      "https://razorpay.com/pricing",
+      "https://razorpay.com/freelancer-unregistered-business",
+      "https://razorpay.com/payment-gateway"
+    ],
+    "video_detection": "video_detected",
+    "video_evidence": [
+      {
+        "detection_type": "youtube_embed",
+        "source_page_url": "https://razorpay.com/solutions/education/",
+        "video_url": "https://www.youtube.com/embed/hUpLvI5h5nk",
+        "title_or_context": "YouTube video player",
+        "confidence": "high"
+      }
+    ],
+    "warnings_and_limitations": [
+      "Inspection completed across 4 page(s) on target domain.",
+      "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+      "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+    ],
+    "error_message": null
+  },
+  "recommendations": [
+    {
+      "title": "Unlock Global Growth: Razorpay's International Payments Solution",
+      "video_type": "Product Explainer",
+      "suggested_placement": "Homepage Hero (below existing video) or dedicated International Payments solution page",
+      "rationale": "The website prominently features 'International Payments' with detailed benefits like virtual accounts in 200+ countries and significant savings. A visual explainer can simplify this complex offering, making its global reach and financial advantages immediately clear to potential users.",
+      "evidence": "Key H1 Headings: 'International Payments'. Key H2 Headings: 'Open a virtual account in 200+ countries, save up to 50% on international bank transfer charges. Receive ACH/SWIFT/SEPA/BACS payments. Global cards, Apple Pay, Google Pay at lower fee.'",
+      "source_page_url": "https://razorpay.com",
+      "target_audience": "Businesses looking to expand internationally, finance managers seeking cost-effective global payment solutions.",
+      "suggested_outline": "Introduce the challenges of international transactions. Visually demonstrate how Razorpay enables virtual accounts, facilitates receiving global payments (ACH/SWIFT/SEPA/BACS), and supports various international payment methods (Global cards, Apple Pay, Google Pay), highlighting the potential 50% savings.",
+      "evidence_limitations": "Public crawl did not inspect specific UI for setting up international payment features or virtual accounts."
+    },
+    {
+      "title": "Boost Your Sales: Razorpay's Optimized Checkout Experience",
+      "video_type": "Feature Walkthrough/Demo",
+      "suggested_placement": "Homepage (below the fold, near conversion statistics) or a dedicated 'Advanced Payment Gateway' solution page.",
+      "rationale": "The website makes strong claims about conversion increases and quicker checkouts. A demo video can visually substantiate these claims by walking through the actual checkout process, showcasing the features that lead to a '40% increase in conversions' and '5X quicker checkout', building trust and demonstrating tangible value.",
+      "evidence": "Key H1 Headings: 'Advanced Payment Gateway'. Key H2 Headings: 'Witness a 40% increase in conversions, enjoy a 5X quicker checkout process, and reduce RTOs by 50%.'",
+      "source_page_url": "https://razorpay.com",
+      "target_audience": "E-commerce businesses, online retailers, product managers focused on optimizing sales funnels.",
+      "suggested_outline": "Begin by addressing common pain points like cart abandonment and slow checkouts. Walk through a simulated Razorpay checkout flow, highlighting specific features that contribute to a 5X quicker process and reduced RTOs. Conclude by reiterating the 40% conversion increase with on-screen metrics.",
+      "evidence_limitations": "Public crawl did not inspect authenticated app screens or actual live checkout flows to verify the user experience."
+    },
+    {
+      "title": "Maximize Efficiency: Razorpay for Aggregators - Lower Fees, Higher Success",
+      "video_type": "Customer Proof Highlight",
+      "suggested_placement": "Homepage (below the fold, near aggregator benefits) or a general 'Solutions' page.",
+      "rationale": "The website provides specific, quantifiable benefits for aggregators, including improved success rates and reduced fees. A video highlighting these ROI points, potentially through an animated case study or benefit-driven narrative, would be highly persuasive for this specific audience.",
+      "evidence": "Key H2 Headings: 'Utilise 15+ payment gateways for all Aggregators, improve success rates by 10% with zero downtime, and cut charges/fees by 15-30%.'",
+      "source_page_url": "https://razorpay.com",
+      "target_audience": "Payment aggregators, platform businesses, SaaS providers managing multiple payment gateways.",
+      "suggested_outline": "Introduce the challenges aggregators face with payment gateway management, success rates, and high fees. Present how Razorpay's solution, leveraging 15+ gateways and zero downtime, directly leads to a 10% improvement in success rates and a 15-30% reduction in charges, using clear on-screen statistics.",
+      "evidence_limitations": "No actual customer testimonials or specific aggregator names were found in the public crawl to feature directly."
+    }
+  ],
+  "outreach_email": {
+    "subject": "Enhancing Razorpay's Online Presence with Video",
+    "body": "Hi team,\n\nI was impressed by Razorpay's comprehensive payment solutions and the clear value proposition on your website, especially around international payments and conversion improvements.\n\nWe noticed your existing video on the homepage. Based on your strong content, we see opportunities for targeted videos that could further amplify key messages. Imagine a short explainer on 'International Payments' or a demo showcasing the '40% increase in conversions' you highlight. These could significantly boost engagement and clarify complex features for prospective clients.\n\nWould you be open to a brief chat about how these video strategies could support your growth?\n\nBest regards",
+    "word_count": 99
+  },
+  "warnings_and_limitations": [
+    "Inspection completed across 4 page(s) on target domain.",
+    "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
+    "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+  ],
+  "error_message": null
+}
