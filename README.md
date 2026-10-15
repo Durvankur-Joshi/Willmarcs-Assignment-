@@ -2,7 +2,7 @@
 
 An AI-powered web application that analyzes a company's website URL, detects existing video assets, recommends exactly three evidence-based video opportunities, and crafts a concise, personalized outreach email (< 120 words).
 
-> **Current Status**: Phase 3 Complete — Website Reader & Existing Video Detection.
+> **Current Status**: Phase 4 Complete — AI Analysis Engine.
 
 ---
 
@@ -10,6 +10,7 @@ An AI-powered web application that analyzes a company's website URL, detects exi
 
 - **Node.js**: v18+ (tested on Node.js v24.15.0 with npm 11.12.1)
 - **Python**: 3.11 (tested on Python 3.11.0)
+- **Google Gemini API Key**: Optional for testing (mocked in automated tests), required for live AI analysis.
 - **Git**
 - **Windows PowerShell** (or compatible shell)
 
@@ -52,12 +53,15 @@ Willmarcs-Assignment/
     app/
       models/
         __init__.py
+        analysis.py
         inspect.py
       routes/
         __init__.py
+        analysis.py
         inspect.py
       services/
         __init__.py
+        ai_analyzer.py
         content_extractor.py
         http_client.py
         url_validator.py
@@ -67,6 +71,7 @@ Willmarcs-Assignment/
       main.py
     tests/
       __init__.py
+      test_analysis.py
       test_health.py
       test_inspect.py
     .env.example
@@ -85,7 +90,7 @@ Willmarcs-Assignment/
 
 From the `backend` directory:
 
-1. Create a Python 3.11 virtual environment:
+1. Create a Python 3.11 virtual environment (if not already created):
    ```powershell
    py -3.11 -m venv .venv
    ```
@@ -104,7 +109,10 @@ From the `backend` directory:
    ```powershell
    Copy-Item .env.example .env
    ```
-   Edit `.env` to configure your settings (such as `FRONTEND_ORIGIN`).
+   Edit `backend/.env` to configure your settings:
+   - `GEMINI_API_KEY`: Obtain an API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+   - `GEMINI_MODEL`: Default is `gemini-1.5-flash` (or configure e.g. `gemini-2.5-flash` / `gemini-1.5-pro`).
+   - `FRONTEND_ORIGIN`: Default is `http://localhost:5173`.
 
 ### 2. Frontend Setup
 
@@ -129,6 +137,7 @@ cd backend
 ```
 - **Health Check Endpoint**: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
 - **Website Inspect Endpoint**: `POST http://127.0.0.1:8000/api/website/inspect`
+- **AI Analysis Endpoint**: `POST http://127.0.0.1:8000/api/analyze`
 - **Interactive Swagger Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 *Note: If port 8000 is occupied, run with `--port 8001`.*
@@ -143,81 +152,143 @@ npm run dev
 
 ---
 
-## Phase 3: Website Inspection & Video Detection API
+## Phase 4: AI Analysis Engine API
 
-### Endpoint: `POST /api/website/inspect`
+### Endpoint: `POST /api/analyze`
 
-Inspects a company's public website, extracts structured page content, identifies relevant About/Product/Features pages, and scans for video elements and embeds.
+Executes the Phase 3 website crawl and video detection, then invokes Google Gemini to generate exactly 3 evidence-based video recommendations and a personalized outreach email under 120 words.
 
 #### Example Request
 ```json
 {
-  "url": "https://example.com",
+  "url": "https://stripe.com",
   "max_additional_pages": 3
 }
 ```
 
-#### Example Response
+#### Example Response (Success)
 ```json
 {
-  "requested_url": "https://example.com",
-  "final_url": "https://example.com",
+  "requested_url": "https://stripe.com",
+  "final_url": "https://stripe.com",
   "status": "success",
-  "title": "Example Domain",
-  "meta_description": null,
-  "factual_summary": "Website Title: Example Domain. This domain is for use in documentation examples without needing permission.",
-  "headings": {
-    "h1": ["Example Domain"],
-    "h2": [],
-    "h3": []
+  "inspection": {
+    "requested_url": "https://stripe.com",
+    "final_url": "https://stripe.com",
+    "status": "success",
+    "title": "Stripe | Financial Infrastructure for the Internet",
+    "meta_description": "Stripe powers online and in-person payments and financial infrastructure.",
+    "factual_summary": "Website Title: Stripe | Financial Infrastructure for the Internet...",
+    "headings": {
+      "h1": ["Financial Infrastructure for the Internet"],
+      "h2": ["A complete payments platform", "Engineered for scale"],
+      "h3": []
+    },
+    "pages_inspected": [
+      {
+        "url": "https://stripe.com",
+        "title": "Stripe | Financial Infrastructure for the Internet",
+        "status_code": 200,
+        "status": "crawled",
+        "error_message": null
+      }
+    ],
+    "discovered_relevant_pages": ["https://stripe.com/pricing", "https://stripe.com/features"],
+    "video_detection": "no_video_detected",
+    "video_evidence": [],
+    "warnings_and_limitations": [
+      "Inspection completed across 1 page(s) on target domain.",
+      "Video detection is limited to static HTML5 tags, embedded iframes, video links, and metadata."
+    ],
+    "error_message": null
   },
-  "pages_inspected": [
+  "recommendations": [
     {
-      "url": "https://example.com",
-      "title": "Example Domain",
-      "status_code": 200,
-      "status": "crawled",
-      "error_message": null
+      "title": "Global Payouts & Multi-Currency Flow Explainer",
+      "video_type": "Product Explainer",
+      "suggested_placement": "Homepage Hero above the fold",
+      "rationale": "Clarifies cross-border clearing for fast-growing global startups.",
+      "evidence": "Homepage H2 'A complete payments platform' relies on text descriptions with no video media.",
+      "source_page_url": "https://stripe.com",
+      "target_audience": "Fintech CTOs and VP Payments",
+      "suggested_outline": "Animates currency conversion steps and unified dashboard reporting.",
+      "evidence_limitations": "Evaluated static landing page copy only."
+    },
+    {
+      "title": "Payment Element SDK Quickstart",
+      "video_type": "Product Demo",
+      "suggested_placement": "Developers Documentation entry page",
+      "rationale": "Software engineers evaluate SDK integration friction.",
+      "evidence": "Inspected copy emphasizes developer-first APIs.",
+      "source_page_url": "https://stripe.com",
+      "target_audience": "Full-stack and backend engineers",
+      "suggested_outline": "Shows 5-line React code snippet embedding checkout elements.",
+      "evidence_limitations": null
+    },
+    {
+      "title": "Billing Migration ROI Case Study",
+      "video_type": "Customer Proof Highlight",
+      "suggested_placement": "Pricing Page enterprise comparison",
+      "rationale": "Enterprise finance leads need evidence of churn reduction.",
+      "evidence": "Pricing table lists enterprise volume discounts without multimedia proof.",
+      "source_page_url": "https://stripe.com",
+      "target_audience": "Enterprise Finance and Procurement directors",
+      "suggested_outline": "Highlights migration timeline and time saved per invoice.",
+      "evidence_limitations": null
     }
   ],
-  "discovered_relevant_pages": [],
-  "video_detection": "no_video_detected",
-  "video_evidence": [],
+  "outreach_email": {
+    "subject": "Video opportunity for Stripe",
+    "body": "Hi team at Stripe,\n\nI was looking through your payments platform pages and noticed how compelling your infrastructure story is, but prospective leads must read through dense documentation to understand the unified workflow.\n\nWe specialize in producing high-converting 60-second product explainers. Placing an interactive explainer in your hero section could significantly clarify your multi-currency routing for first-time visitors.\n\nWould you be open to a 10-minute chat this Thursday to review 3 quick video concepts we drafted for Stripe?\n\nBest regards",
+    "word_count": 82
+  },
   "warnings_and_limitations": [
-    "Inspection completed across 1 page(s) on target domain.",
-    "Video detection is limited to static HTML5 tags, embedded iframes (YouTube, Vimeo, Wistia, etc.), video links, and metadata.",
-    "Videos rendered dynamically via client-side JavaScript or behind login authentication were not evaluated."
+    "Inspection completed across 1 page(s) on target domain."
   ],
   "error_message": null
 }
 ```
 
-### Key Capabilities
+#### Error Behavior (When GEMINI_API_KEY is not configured)
+If `GEMINI_API_KEY` is not set or set to the placeholder:
+```json
+{
+  "requested_url": "https://example.com",
+  "final_url": "https://example.com",
+  "status": "failed",
+  "inspection": { ... },
+  "recommendations": [],
+  "outreach_email": null,
+  "warnings_and_limitations": [ ... ],
+  "error_message": "GEMINI_API_KEY is not configured. Please set a valid Gemini API key in backend/.env."
+}
+```
 
-1. **URL Validation & SSRF Prevention**:
-   - Rejects non-HTTP/HTTPS protocols (ftp, file, javascript, data).
-   - Rejects loopback addresses (`127.0.0.0/8`, `::1`), private networks (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), link-local (`169.254.0.0/16`), and blocked hostnames (`localhost`, `*.internal`, etc.).
-   - Validates every redirect target against SSRF boundaries and prevents redirect loops.
-   - Enforces a 2MB maximum response size and 8-second timeout.
+---
 
-2. **Content Extraction**:
-   - Extracts page titles, meta descriptions, and semantic headings (`H1`, `H2`, `H3`).
-   - Filters out boilerplate elements (`nav`, `footer`, scripts, styles, cookie/privacy modals).
-   - Generates a concise, strictly factual summary without using any external LLMs.
-   - Discovers relevant same-domain subpages based on keywords (`about`, `product`, `features`, `pricing`, etc.).
+## Phase 4 Core Features
 
-3. **Existing Video Detection**:
-   - Detects `<video>` tags and `<source>` media files.
-   - Identifies YouTube, Vimeo, Wistia, Loom, and Vidyard iframe players.
-   - Detects direct video links (`.mp4`, `.webm`) and public video platform links.
-   - Extracts structured metadata (`og:video`, `twitter:player`, Schema.org `VideoObject`).
-   - Categorizes detection confidence into `video_detected`, `possible_video_detected`, and `no_video_detected`.
+1. **Evidence Grounding**:
+   - Recommendations reference only URLs from `pages_inspected`.
+   - Evidence quotes and headings are derived from actual crawled content.
+   - Distinct video types prevent repetitive concept proposals.
+2. **Strict Email Word Limit**:
+   - Python-level word counting enforces strictly `< 120 words`.
+   - Trims safely at sentence boundaries if the model exceeds the limit.
+   - Neutral sign-offs without fabricated sender details or false claims.
+3. **Safety & Prompt Injection Defense**:
+   - Scraped website content is labeled as untrusted data.
+   - System prompts instruct the model to ignore embedded commands or prompt override attempts.
+4. **Resilient Error Handling**:
+   - Missing API key returns safe configuration instructions without crashing.
+   - Inspection failure halts execution immediately before invoking Gemini.
+   - API rate limits, timeouts, and auth errors return user-friendly error messages without leaking secrets.
 
 ---
 
 ## Running Tests
 
-Run the full pytest suite from the `backend` directory:
+Run the full pytest suite from the `backend` directory (all AI calls and HTTP requests are mocked):
 
 ```powershell
 cd backend
@@ -226,8 +297,14 @@ cd backend
 
 ---
 
-## Known Scope & Limitations
+## Manual AI Testing with a Real Gemini Key
 
-- **JavaScript Single Page Applications**: Video detection relies on server-rendered static HTML responses. Videos loaded asynchronously via client-side JavaScript execution or custom Web Components are marked as inconclusive or uninspected.
-- **Authentication & Paywalls**: Crawling is limited strictly to publicly reachable pages. Login-protected areas or pages behind bot challenges (Cloudflare, CAPTCHA) return a structured failure.
-- **Crawl Boundary**: Crawling is capped at a configurable small depth (`max_additional_pages=3`) to respect target server bandwidth and prevent denial of service.
+To run a live test with your own Gemini API key:
+1. Open `backend/.env`.
+2. Set `GEMINI_API_KEY=AIzaSy...` (your actual key).
+3. In PowerShell, send a POST request:
+   ```powershell
+   $body = @{ url = 'https://example.com' } | ConvertTo-Json
+   Invoke-RestMethod -Uri http://127.0.0.1:8000/api/analyze -Method Post -ContentType 'application/json' -Body $body
+   ```
+4. Verify the 3 generated recommendations and verified email word count.

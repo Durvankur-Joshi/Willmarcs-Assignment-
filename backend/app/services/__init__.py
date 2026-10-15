@@ -1,3 +1,14 @@
+from app.services.ai_analyzer import (
+    GeminiAnalysisError,
+    GeminiConfigError,
+    construct_analysis_prompt,
+    count_words,
+    generate_ai_analysis,
+    get_gemini_api_key,
+    get_gemini_model,
+    parse_and_validate_ai_response,
+    trim_email_to_limit,
+)
 from app.services.content_extractor import (
     discover_relevant_links,
     extract_headings,
@@ -8,14 +19,26 @@ from app.services.content_extractor import (
     normalize_url,
 )
 from app.services.http_client import SafeFetchError, SafeFetchResult, safe_fetch_html
-from app.services.url_validator import URLValidationError, is_hostname_safe, is_ip_safe, validate_target_url
-from app.services.video_detector import detect_videos_in_soup, evaluate_video_detection_status
+from app.services.url_validator import (
+    URLValidationError,
+    is_hostname_safe,
+    is_ip_safe,
+    validate_target_url,
+)
+from app.services.video_detector import (
+    detect_videos_in_soup,
+    evaluate_video_detection_status,
+)
 from app.services.website_reader import inspect_website
 
 __all__ = [
+    "GeminiAnalysisError",
+    "GeminiConfigError",
     "SafeFetchError",
     "SafeFetchResult",
     "URLValidationError",
+    "construct_analysis_prompt",
+    "count_words",
     "detect_videos_in_soup",
     "discover_relevant_links",
     "evaluate_video_detection_status",
@@ -23,11 +46,16 @@ __all__ = [
     "extract_main_visible_text",
     "extract_meta_description",
     "extract_page_title",
+    "generate_ai_analysis",
     "generate_factual_summary",
+    "get_gemini_api_key",
+    "get_gemini_model",
     "inspect_website",
     "is_hostname_safe",
     "is_ip_safe",
     "normalize_url",
+    "parse_and_validate_ai_response",
     "safe_fetch_html",
+    "trim_email_to_limit",
     "validate_target_url",
 ]

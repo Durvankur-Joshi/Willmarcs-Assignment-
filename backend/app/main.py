@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.routes.analysis import router as analysis_router
 from app.routes.inspect import router as inspect_router
 
 load_dotenv()
@@ -20,6 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(analysis_router)
 app.include_router(inspect_router)
 
 
