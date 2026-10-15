@@ -115,9 +115,9 @@ export default function App() {
                 </span>
                 <Badge
                   variant="outline"
-                  className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[10px] font-medium px-2 py-0"
+                  className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] font-medium px-2 py-0"
                 >
-                  Phase 5 Connected
+                  AI Opportunity Engine
                 </Badge>
               </div>
               <p className="text-xs text-slate-500 hidden sm:block">
@@ -347,15 +347,33 @@ export default function App() {
         )}
       </main>
 
-      <footer className="border-t border-slate-200 bg-white py-6 mt-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-700">Video Opportunity Analyzer</span>
-            <span>•</span>
-            <span>Phase 5: Full Stack Connected</span>
+      <footer className="border-t border-slate-200 bg-white py-8 mt-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm text-slate-600">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 font-semibold text-slate-900">
+              <span>Video Opportunity Analyzer</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-xs font-normal text-slate-500">AI Video Strategy & Outreach</span>
+            </div>
+            <p className="text-xs text-slate-500">
+              Evidence-based video placement analysis and outreach generation for public websites.
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <span>FastAPI + Vite + React + Tailwind CSS + shadcn/ui</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 text-sm text-slate-600">
+            <span className="text-xs font-medium uppercase tracking-wider text-slate-400">Stack:</span>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-medium text-slate-700">
+              <span>FastAPI</span>
+              <span className="text-slate-300">•</span>
+              <span>Python</span>
+              <span className="text-slate-300">•</span>
+              <span>Google Gemini</span>
+              <span className="text-slate-300">•</span>
+              <span>React</span>
+              <span className="text-slate-300">•</span>
+              <span>TypeScript</span>
+              <span className="text-slate-300">•</span>
+              <span>Tailwind CSS</span>
+            </div>
           </div>
         </div>
       </footer>

@@ -89,7 +89,7 @@ export function AnalysisSummary({ summary, isPreviewDemo }: AnalysisSummaryProps
                 </Badge>
               </div>
               <p className="text-[11px] text-slate-400">
-                {isPreviewDemo ? 'Phase 2 UI evaluation' : 'Crawl verified'}
+                {isPreviewDemo ? 'Simulated preview' : 'Crawl verified'}
               </p>
             </div>
             <div className="h-10 w-10 rounded-lg bg-slate-50 text-slate-600 flex items-center justify-center shrink-0">

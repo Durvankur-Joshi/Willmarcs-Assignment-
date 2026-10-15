@@ -2,13 +2,13 @@
 
 An AI-powered full-stack web application that inspects a company's public website URL, detects existing video assets, recommends exactly three evidence-based video placement opportunities, and drafts a personalized cold outreach email (< 120 words).
 
-> **Current Status**: Phase 5 Complete — React Frontend connected to FastAPI Backend with live analysis workflow, robust error handling, and clipboard support.
+> **Current Status**: Production Ready — Cleaned user interface, polished typography, full-stack live analysis workflow verified on target websites, comprehensive test suite, and submission-ready documentation.
 
 ---
 
 ## Architecture & Technology Stack
 
-- **Backend**: Python 3.11, FastAPI, Pydantic v2, BeautifulSoup4, Requests, Google GenAI SDK (`google-genai` / `gemini-1.5-flash`), Pytest.
+- **Backend**: Python 3.11, FastAPI, Pydantic v2, BeautifulSoup4, Requests, Google GenAI SDK (`google-genai` / `gemini-2.5-flash`), Pytest.
 - **Frontend**: React 19, TypeScript, Vite, Tailwind CSS v4, shadcn/ui primitives, Lucide React icons.
 - **API Communication**: REST JSON over HTTP with configurable base URL (`VITE_API_BASE_URL`), AbortController timeout protection, and granular HTTP/JSON error decoding.
 
@@ -80,6 +80,11 @@ Willmarcs-Assignment/
       test_health.py
       test_inspect.py
     requirements.txt
+  results/
+    notion.json
+    razorpay.json
+    zoho-crm.json
+    test-report.md
   README.md
 ```
 
@@ -110,7 +115,7 @@ Copy-Item backend\.env.example backend\.env
 | Variable | Default Value | Description |
 | :--- | :--- | :--- |
 | `GEMINI_API_KEY` | `your_gemini_api_key_here` | Your Google Gemini API key from Google AI Studio. |
-| `GEMINI_MODEL` | `gemini-1.5-flash` | Gemini model name (e.g. `gemini-1.5-flash`, `gemini-1.5-pro`). |
+| `GEMINI_MODEL` | `gemini-2.5-flash` | Gemini model name (default: `gemini-2.5-flash`). |
 | `FRONTEND_ORIGIN` | `http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173` | Allowed CORS origins for the frontend application. |
 | `PORT` | `8000` | Backend server port (change to `8001` if port 8000 is unavailable). |
 | `HOST` | `127.0.0.1` | Backend bind host. |
@@ -170,7 +175,7 @@ npm run dev
 | Scenario / State | Visual Presentation | Suggested Action |
 | :--- | :--- | :--- |
 | **Initial Empty State** | Dashed card with overview features and quick test links. | Enter URL or click quick test button. |
-| **Loading State** | Progress spinner, pulsing skeleton indicators, disabled input and submit button to prevent duplicate submissions. | Automatic transition upon response. |
+| **Loading State** | Progress spinner, step-by-step indicator, disabled input and submit button to prevent duplicate submissions. | Automatic transition upon response. |
 | **Invalid URL** | Immediate inline validation error below input (`URL must start with http:// or https://`). | Correct the URL syntax. |
 | **Target Website Inaccessible** | Red alert card indicating target site returned 403/404 or connection timed out. | Check domain availability or enter another URL. |
 | **Backend Server Offline** | Amber alert card stating FastAPI backend at `VITE_API_BASE_URL` cannot be reached. | Start backend via `uvicorn app.main:app --reload --port 8000`. |
@@ -179,20 +184,34 @@ npm run dev
 
 ---
 
+## Assignment Deliverables & Test Results
+
+The application was formally evaluated across the three required production websites. Full JSON outputs and an analytical report are preserved in the `results/` directory:
+
+| Target Website | Target URL | Inspected Pages | Video Detected | Recommendations | Outreach Email | Result File |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **Notion** | `https://www.notion.com` | 4 pages | Yes | 3 | 88 words (<120) | [`results/notion.json`](results/notion.json) |
+| **Razorpay** | `https://razorpay.com` | 4 pages | Yes | 3 | 99 words (<120) | [`results/razorpay.json`](results/razorpay.json) |
+| **Zoho CRM** | `https://www.zoho.com/crm` | 4 pages | Yes (7 assets) | 3 | 96 words (<120) | [`results/zoho-crm.json`](results/zoho-crm.json) |
+
+Comprehensive test results, comparative metrics, and evaluation notes are documented in [`results/test-report.md`](results/test-report.md).
+
+---
+
 ## Automated Testing
 
 ### Backend Unit & Regression Tests (pytest)
 
-Runs 41 tests covering health checks, website crawling, SSRF protection, video detection, Gemini prompt generation, and word count enforcement (all HTTP and AI calls mocked):
+Runs 45 automated tests covering health checks, website crawling, SSRF protection, video detection, Gemini 2.5 prompt generation, retry/recovery logic, and word count enforcement (all HTTP and AI calls mocked):
 
 ```powershell
 cd "e:\Willmarcs Assignment\backend"
-.\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m pytest -v
 ```
 
-### Frontend Integration & Flow Tests (Node.js test runner)
+### Frontend Unit & Flow Tests (Node.js test runner)
 
-Runs 8 unit tests covering response adaptation, network failure handling, timeout handling, HTTP 422 errors, Gemini unconfigured error handling, email word count auditing, clipboard formatting, and duplicate submission prevention:
+Runs 13 automated tests covering response adaptation, network failure handling, timeout handling, HTTP 422 errors, Gemini unconfigured error handling, email word count auditing, clipboard formatting, duplicate submission prevention, and error states:
 
 ```powershell
 cd "e:\Willmarcs Assignment\frontend"
