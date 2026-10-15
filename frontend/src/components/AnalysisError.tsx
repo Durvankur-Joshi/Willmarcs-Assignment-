@@ -1,4 +1,4 @@
-import { AlertCircle, AlertTriangle, RefreshCw, ServerCrash, Sparkles, WifiOff } from 'lucide-react'
+import { AlertCircle, AlertTriangle, KeyRound, RefreshCw, ServerCrash, Sparkles, WifiOff } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import type { AnalysisErrorDetails } from '@/types/analysis'
@@ -18,6 +18,8 @@ export function AnalysisError({ error, onRetry, onRunDemo }: AnalysisErrorProps)
         return <WifiOff className="h-6 w-6 text-rose-600" />
       case 'backend_unavailable':
         return <ServerCrash className="h-6 w-6 text-amber-600" />
+      case 'gemini_unconfigured':
+        return <KeyRound className="h-6 w-6 text-amber-600" />
       default:
         return <AlertTriangle className="h-6 w-6 text-rose-600" />
     }
@@ -44,6 +46,21 @@ export function AnalysisError({ error, onRetry, onRunDemo }: AnalysisErrorProps)
           </div>
         )}
 
+        {error.type === 'gemini_unconfigured' && (
+          <div className="bg-amber-50/70 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 text-left max-w-md mx-auto space-y-1">
+            <span className="font-semibold block">How to configure your Gemini API Key:</span>
+            <p className="text-[11px] text-amber-800">
+              1. Get a free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="underline font-medium">Google AI Studio</a>.
+            </p>
+            <p className="text-[11px] text-amber-800">
+              2. Open <code>backend/.env</code> and set <code>GEMINI_API_KEY=your_key</code>.
+            </p>
+            <p className="text-[11px] text-amber-800">
+              3. The backend uvicorn server will auto-reload with the active key.
+            </p>
+          </div>
+        )}
+
         <div className="flex items-center justify-center gap-2 pt-2 flex-wrap">
           {onRetry && (
             <Button
@@ -66,7 +83,7 @@ export function AnalysisError({ error, onRetry, onRunDemo }: AnalysisErrorProps)
               className="text-xs bg-blue-600 hover:bg-blue-700 text-white"
             >
               <Sparkles className="h-3.5 w-3.5 mr-1" />
-              View Demo Sample Instead
+              Preview Sample Layout
             </Button>
           )}
         </div>

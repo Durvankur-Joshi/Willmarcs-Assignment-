@@ -18,12 +18,15 @@ import { AnalysisError } from '@/components/AnalysisError'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { checkBackendHealth, simulateAnalysisRequest } from '@/lib/api'
+import {
+  analyzeWebsiteReal,
+  checkBackendHealth,
+  generatePreviewData
+} from '@/lib/api'
 import type {
   AnalysisErrorDetails,
   AnalysisResult,
-  AnalysisStatus,
-  ErrorType
+  AnalysisStatus
 } from '@/types/analysis'
 
 export default function App() {
@@ -39,19 +42,34 @@ export default function App() {
       .catch(() => setBackendOnline(false))
   }, [])
 
-  async function handleAnalyze(targetUrl: string, forceErrorType?: ErrorType, partial = false) {
-    setUrl(targetUrl)
+  async function handleAnalyze(targetUrl: string) {
+    if (status === 'loading') {
+      return
+    }
+
+    const trimmedUrl = targetUrl.trim()
+    if (!trimmedUrl) {
+      setErrorDetails({
+        type: 'invalid_url',
+        title: 'URL Required',
+        message: 'Please enter a website URL before analyzing.',
+        suggestedAction: 'Enter a full URL starting with http:// or https://'
+      })
+      setStatus('error')
+      return
+    }
+
+    setUrl(trimmedUrl)
     setStatus('loading')
+    setResult(null)
     setErrorDetails(null)
 
     try {
-      const data = await simulateAnalysisRequest(targetUrl, {
-        forceError: forceErrorType,
-        partial
-      })
+      const data = await analyzeWebsiteReal(trimmedUrl)
       setResult(data)
-      setStatus(partial ? 'partial' : 'success')
+      setStatus(data.evidence.isIncompleteAnalysis ? 'partial' : 'success')
     } catch (err: unknown) {
+      setResult(null)
       const customErr = err as { details?: AnalysisErrorDetails; message?: string }
       if (customErr.details) {
         setErrorDetails(customErr.details)
@@ -65,6 +83,14 @@ export default function App() {
       }
       setStatus('error')
     }
+  }
+
+  function handlePreviewDemo(demoUrl = 'https://stripe.com') {
+    setUrl(demoUrl)
+    setErrorDetails(null)
+    const demoData = generatePreviewData(demoUrl)
+    setResult(demoData)
+    setStatus('success')
   }
 
   function handleReset() {
@@ -89,9 +115,9 @@ export default function App() {
                 </span>
                 <Badge
                   variant="outline"
-                  className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] font-medium px-2 py-0"
+                  className="bg-emerald-50 text-emerald-700 border-emerald-200 text-[10px] font-medium px-2 py-0"
                 >
-                  Phase 2 Preview UI
+                  Phase 5 Connected
                 </Badge>
               </div>
               <p className="text-xs text-slate-500 hidden sm:block">
@@ -162,36 +188,32 @@ export default function App() {
         <div className="max-w-2xl mx-auto flex items-center justify-between text-xs text-slate-500 border border-slate-200/80 rounded-lg p-2.5 bg-white/70">
           <span className="font-medium text-slate-700 flex items-center gap-1.5">
             <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-            Test Scenarios:
+            Quick Test URLs:
           </span>
           <div className="flex items-center gap-1.5 flex-wrap">
             <button
               type="button"
+              disabled={status === 'loading'}
+              onClick={() => handleAnalyze('https://example.com')}
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 text-[11px] transition-colors disabled:opacity-50"
+            >
+              example.com
+            </button>
+            <button
+              type="button"
+              disabled={status === 'loading'}
+              onClick={() => handleAnalyze('https://news.ycombinator.com')}
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 text-[11px] transition-colors disabled:opacity-50"
+            >
+              Hacker News
+            </button>
+            <button
+              type="button"
+              disabled={status === 'loading'}
               onClick={() => handleAnalyze('https://stripe.com')}
-              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 text-[11px] transition-colors"
+              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 border border-slate-200 text-[11px] transition-colors disabled:opacity-50"
             >
-              Full Demo
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAnalyze('https://stripe.com', undefined, true)}
-              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-amber-50 hover:text-amber-700 border border-slate-200 text-[11px] transition-colors"
-            >
-              Partial Crawl
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAnalyze('https://broken-website-test.fake', 'inaccessible')}
-              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-rose-50 hover:text-rose-700 border border-slate-200 text-[11px] transition-colors"
-            >
-              Inaccessible
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAnalyze('https://example.com', 'backend_unavailable')}
-              className="px-2 py-0.5 rounded bg-slate-100 hover:bg-rose-50 hover:text-rose-700 border border-slate-200 text-[11px] transition-colors"
-            >
-              Backend Error
+              Stripe
             </button>
           </div>
         </div>
@@ -208,17 +230,17 @@ export default function App() {
                     No Analysis Performed Yet
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Provide any public company website URL above or select a sample to preview the 4-part intelligence dashboard.
+                    Enter any public company website URL above or click a quick test URL to inspect website structure, detect video gaps, and generate 3 tailored concepts.
                   </p>
                 </div>
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => handleAnalyze('https://stripe.com')}
+                  onClick={() => handleAnalyze('https://example.com')}
                   className="text-xs border-slate-300 hover:bg-slate-100"
                 >
                   <Sparkles className="h-3.5 w-3.5 mr-1 text-blue-600" />
-                  Load Sample Preview Analysis
+                  Analyze example.com
                 </Button>
               </CardContent>
             </Card>
@@ -263,7 +285,7 @@ export default function App() {
           <AnalysisError
             error={errorDetails}
             onRetry={() => handleAnalyze(url)}
-            onRunDemo={() => handleAnalyze('https://stripe.com')}
+            onRunDemo={() => handlePreviewDemo('https://stripe.com')}
           />
         )}
 
@@ -306,12 +328,21 @@ export default function App() {
               <OutreachEmail email={result.outreachEmail} />
             </section>
 
-            <div className="p-3 bg-blue-50/50 border border-blue-200 rounded-lg flex items-center gap-2 text-xs text-blue-900">
-              <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />
-              <span>
-                <strong>Phase 2 Frontend Review Notice:</strong> Data rendered above is generated in local preview mode to validate all dashboard components, layouts, word-counting, and error states. Backend analysis endpoint integration is scheduled for Phase 3.
-              </span>
-            </div>
+            {!result.isPreviewDemo ? (
+              <div className="p-3 bg-emerald-50/50 border border-emerald-200 rounded-lg flex items-center gap-2 text-xs text-emerald-900">
+                <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span>
+                  <strong>Live Analysis Verified:</strong> Analysis generated via backend website inspection and AI video opportunity engine.
+                </span>
+              </div>
+            ) : (
+              <div className="p-3 bg-amber-50/50 border border-amber-200 rounded-lg flex items-center gap-2 text-xs text-amber-900">
+                <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Simulated Preview Sample:</strong> Displaying preview layout. Enter any company URL above to run a live analysis.
+                </span>
+              </div>
+            )}
           </div>
         )}
       </main>
@@ -321,7 +352,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <span className="font-semibold text-slate-700">Video Opportunity Analyzer</span>
             <span>•</span>
-            <span>Phase 2: Frontend UI Development</span>
+            <span>Phase 5: Full Stack Connected</span>
           </div>
           <div className="flex items-center gap-3">
             <span>FastAPI + Vite + React + Tailwind CSS + shadcn/ui</span>

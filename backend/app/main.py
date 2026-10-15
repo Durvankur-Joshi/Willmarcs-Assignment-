@@ -10,7 +10,10 @@ load_dotenv()
 
 app = FastAPI(title="Video Opportunity Analyzer API")
 
-raw_origins = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+raw_origins = os.getenv(
+    "FRONTEND_ORIGIN",
+    "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173",
+)
 origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 
 app.add_middleware(

@@ -14,12 +14,15 @@ export function OutreachEmail({ email }: OutreachEmailProps) {
   const [copyError, setCopyError] = React.useState<string | null>(null)
 
   const wordCount = React.useMemo(() => {
+    if (typeof email.wordCount === 'number') {
+      return email.wordCount
+    }
     if (!email.body) return 0
     return email.body
       .trim()
       .split(/\s+/)
       .filter((word) => word.length > 0).length
-  }, [email.body])
+  }, [email.body, email.wordCount])
 
   const isUnderLimit = wordCount < 120
 
@@ -44,7 +47,7 @@ export function OutreachEmail({ email }: OutreachEmailProps) {
         setTimeout(() => setCopied(false), 2500)
       }
     } catch {
-      setCopyError('Failed to copy to clipboard. Please copy manually.')
+      setCopyError('Failed to copy to clipboard. Please select the subject and body text below manually.')
     }
   }
 
