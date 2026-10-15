@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.routes.inspect import router as inspect_router
+
 load_dotenv()
 
 app = FastAPI(title="Video Opportunity Analyzer API")
@@ -18,7 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(inspect_router)
+
 
 @app.get("/api/health")
 def health_check():
     return {"status": "ok", "service": "video-opportunity-analyzer"}
+
